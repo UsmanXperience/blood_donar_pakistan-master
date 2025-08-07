@@ -1,5 +1,5 @@
 import 'package:blood_donar_pakistan/routes/routes.dart';
-import 'package:blood_donar_pakistan/view/splash_screen.dart';
+import 'package:blood_donar_pakistan/view%20model/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
