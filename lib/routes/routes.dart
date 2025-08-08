@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../view/login.dart';
 import '../view model/splash_screen.dart';
+import '../view/login_page.dart';
 import '../view/otp_screen.dart';
 import '../custom_logo/phone_numb_custom.dart';
 class AppRoutes {
@@ -9,7 +10,7 @@ class AppRoutes {
     SplashScreen.id: (context) => SplashScreen(),
     Login.id: (context) => Login(),
     OtpScreen.id: (context) =>OtpScreen(),
-
+    LoginPage.id: (context)=>LoginPage(),
 
   };
 }

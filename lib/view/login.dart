@@ -1,4 +1,5 @@
 import 'package:blood_donar_pakistan/extension/extension.dart';
+import 'package:blood_donar_pakistan/view/login_page.dart';
 import 'package:blood_donar_pakistan/view/otp_screen.dart';
 import 'package:blood_donar_pakistan/custom_logo/phone_numb_custom.dart';
 import 'package:flutter/material.dart';
@@ -38,11 +39,40 @@ class Login extends StatelessWidget {
                   onNext: () {
                     Navigator.pushNamed(context, OtpScreen.id);
                   },
+                  title: 'PHONE NUMBER',
+                  subtitle:
+                      'We only need your phone number for authentication purposes and will not contact you otherwise.',
+                  buttonText: 'NEXT',
+                  child:  TextField(
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                    labelText: 'PHONE NUMBER',
+                    labelStyle: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
+                      fontFamily: 'Lexend',
+                      fontSize: 12,
+                    ),
+                    hintText: 'TYPE YOUR PHONE NUMBER',
+                    hintStyle: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w300,
+                      fontFamily: 'Lexend',
+                      fontSize: 12,
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                  ),
+                ),
                 ),
               ],
             ),
 
-            SizedBox(height: screenHeight * 0.22),
+            SizedBox(height: screenHeight * 0.2),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -57,9 +87,7 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
-
-                  },
+                  onTap: () {},
                   child: Text(
                     'Resend',
                     style: TextStyle(
