@@ -1,7 +1,7 @@
 import 'package:blood_donar_pakistan/custom_logo/phone_numb_custom.dart';
 import 'package:blood_donar_pakistan/custom_logo/top_desing.dart';
 import 'package:blood_donar_pakistan/extension/extension.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,8 +12,7 @@ import 'dart:async';
 class OtpScreen extends StatefulWidget {
   static const String id = 'OtpScreen';
 
-
-  const OtpScreen({super.key, });
+  const OtpScreen({super.key});
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -31,39 +30,10 @@ class _OtpScreenState extends State<OtpScreen> {
   int _remainingSeconds = 240; // 4 minutes
   String _timeDisplay = "04:00";
 
-  FirebaseAuth auth = FirebaseAuth.instance;
-  String _verificationId = "";
   @override
   void initState() {
     super.initState();
     _startTimer();
-    sendOTP("+923471902927");
-
-
-  }
-  void sendOTP(String phoneNumber) async {
-    await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      timeout: const Duration(seconds: 60),
-      verificationCompleted: (PhoneAuthCredential credential) {
-        // Auto-retrieval or instant verification
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Verification failed: ${e.message}")),
-        );
-      },
-      codeSent: (String verificationId, int? resendToken) {
-        setState(() {
-          _verificationId = verificationId;
-        });
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        setState(() {
-          _verificationId = verificationId;
-        });
-      },
-    );
   }
 
   void _startTimer() {
@@ -83,8 +53,6 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 
   @override
-
-
   @override
   void dispose() {
     for (final controller in _controllers) {
@@ -96,27 +64,12 @@ class _OtpScreenState extends State<OtpScreen> {
     _timer.cancel();
     super.dispose();
   }
-  // ✅ Yahan paste karein
-  void verifyOtpAndLogin(String otp) async {
-    try {
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: _verificationId,
-        smsCode: otp,
-      );
 
-      await FirebaseAuth.instance.signInWithCredential(credential);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("OTP Verified Successfully")),
-      );
-
-      Navigator.pushReplacementNamed(context, LoginPage.id);
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Invalid OTP: $e")),
-      );
-    }
+  bool isValidPhoneNumber(String phone) {
+    final RegExp phoneRegex = RegExp(r'^\d{11}$');
+    return phoneRegex.hasMatch(phone);
   }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
@@ -145,12 +98,25 @@ class _OtpScreenState extends State<OtpScreen> {
                       onNext: () {
                         String otp = _controllers.map((c) => c.text).join();
 
-                        verifyOtpAndLogin(otp);
+                        if (otp.length == 4) {
+                          print("Entered OTP is $otp");
+
+                          Navigator.pushNamed(context, LoginPage.id);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Please enter the complete 4-digit OTP',
+                              ),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        }
                       },
 
                       title: 'PHONE VERIFICATION',
                       subtitle:
-                          'Enter the OTP we have sent on your mobile number: +3064567873',
+                          'Enter the OTP we have sent on your mobile number',
                       buttonText: 'VERIFY',
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -189,7 +155,9 @@ class _OtpScreenState extends State<OtpScreen> {
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(12),
                                       ),
-                                      borderSide: BorderSide(color: Colors.black),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                      ),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
@@ -215,7 +183,6 @@ class _OtpScreenState extends State<OtpScreen> {
                           );
                         }),
                       ),
-
                     ),
                     SizedBox(height: screenHeight * 0.1),
                     Text.rich(
@@ -230,23 +197,17 @@ class _OtpScreenState extends State<OtpScreen> {
                         children: [
                           TextSpan(
                             text: _timeDisplay.substring(0, 3),
-                            style: const TextStyle(
-                              color: Colors.black,
-                            ),
+                            style: const TextStyle(color: Colors.black),
                           ),
                           TextSpan(
                             text: _timeDisplay.substring(3),
-                            style: const TextStyle(
-                              color: Colors.black,
-                            ),
+                            style: const TextStyle(color: Colors.black),
                           ),
                         ],
                       ),
                     ),
-
                   ],
                 ),
-
               ],
             ),
           ],

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "779829305466",
+    "project_id": "blood-donar-pakistan",
+    "storage_bucket": "blood-donar-pakistan.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779829305466:android:d3cd274977f82ded089bc3",
+        "android_client_info": {
+          "package_name": "com.example.blood_donar_pakistan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAwue1-r1T9_NcNSNv5aAziM11gF-BsYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
