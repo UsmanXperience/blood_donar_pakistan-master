@@ -26,8 +26,8 @@ class _LoginState extends State<Login> {
 
   // Function to validate 11-digit phone number
   bool isValidPhoneNumber(String phone) {
-    final RegExp phoneRegex = RegExp(r'^\d{11}$');
-    return phoneRegex.hasMatch(phone);
+    // Check: 11 digit ka ho aur sirf numbers ho
+    return phone.length == 11 && int.tryParse(phone) != null;
   }
 
   @override
@@ -40,10 +40,7 @@ class _LoginState extends State<Login> {
       body: GestureDetector(
         // Unfocus only when tapping outside the focused widget
         onTap: () {
-          final FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus && currentFocus.hasFocus) {
-            currentFocus.unfocus();
-          }
+          FocusScope.of(context).unfocus();
         },
         child: SingleChildScrollView(
           child: Column(
@@ -63,23 +60,22 @@ class _LoginState extends State<Login> {
                   PhoneNumberCard(
                     screenHeight: screenHeight,
                     screenWidth: screenWidth,
+
+                    //next button
+
                     onNext: () {
                       String phoneNumber = phoneController.text.trim();
-                      if (isValidPhoneNumber(phoneNumber)) {
-                        Navigator.pushNamed(
-                          context,
-                          OtpScreen.id,
-                          arguments: phoneNumber,
+                      if (isValidPhoneNumber(phoneNumber)){
+                        Navigator.pushNamed(context, OtpScreen.id,
+                          arguments: phoneController.text,
                         );
-                      } else {
+                      }
+                       else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: const Text(
-                              'Please enter a valid 11-digit phone number',
-                            ),
-                            backgroundColor: Colors.red,
-                            duration: const Duration(seconds: 3),
-                          ),
+                          SnackBar(content: Text('Please enter a valid 11-digit phone number',),
+                          backgroundColor: Colors.red,
+                            duration: Duration(seconds: 3),
+                          )
                         );
                       }
                     },
@@ -91,7 +87,7 @@ class _LoginState extends State<Login> {
                       controller: phoneController,
                       keyboardType: TextInputType.phone,
                       maxLength: 11,
-                      decoration: const InputDecoration(
+                      decoration:  InputDecoration(
                         labelText: 'PHONE NUMBER',
                         labelStyle: TextStyle(
                           color: Colors.black,
@@ -119,11 +115,11 @@ class _LoginState extends State<Login> {
                   ),
                 ],
               ),
-              SizedBox(height: screenHeight > 600 ? 120 : 80),
+              SizedBox(height: screenHeight*0.2,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                   Text(
                     "Didn't get OTP? ",
                     style: TextStyle(
                       color: Colors.grey,
@@ -134,28 +130,28 @@ class _LoginState extends State<Login> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      String phoneNumber = phoneController.text.trim();
-                      if (isValidPhoneNumber(phoneNumber)) {
-                        // Add resend OTP logic here
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('OTP resent successfully'),
-                            duration: Duration(seconds: 3),
-                          ),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Please enter a valid phone number to resend OTP',
-                            ),
-                            backgroundColor: Colors.red,
-                            duration: Duration(seconds: 3),
-                          ),
-                        );
-                      }
+                     String phoneNumber =phoneController.text.trim();
+                     if
+                       (isValidPhoneNumber(phoneNumber)){
+                       ScaffoldMessenger.of(context).showSnackBar(
+                         SnackBar(content: Text('OTP resent successfully'),
+
+                           duration: Duration(seconds: 3),
+                         ),
+
+                       );
+
+                     } else{
+                       ScaffoldMessenger.of(context).showSnackBar(
+                         SnackBar(content: Text('Please enter a valid phone number to resend OTP'),
+                         backgroundColor: Colors.red,
+                           duration: Duration(seconds: 3),
+                         )
+                       );
+                     }
+
                     },
-                    child: const Text(
+                    child:  Text(
                       'Resend',
                       style: TextStyle(
                         color: Colors.black,

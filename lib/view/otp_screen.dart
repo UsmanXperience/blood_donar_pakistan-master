@@ -19,6 +19,7 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+  late String phoneNumber;
   final List<TextEditingController> _controllers = List.generate(
     4,
 
@@ -27,7 +28,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
   late Timer _timer;
-  int _remainingSeconds = 240; // 4 minutes
+  int _remainingSeconds = 240;
   String _timeDisplay = "04:00";
 
   @override
@@ -69,7 +70,11 @@ class _OtpScreenState extends State<OtpScreen> {
     final RegExp phoneRegex = RegExp(r'^\d{11}$');
     return phoneRegex.hasMatch(phone);
   }
-
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    phoneNumber = ModalRoute.of(context)!.settings.arguments as String;
+  }
   @override
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
@@ -116,7 +121,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
                       title: 'PHONE VERIFICATION',
                       subtitle:
-                          'Enter the OTP we have sent on your mobile number',
+                          'Enter the OTP we have sent on your mobile number $phoneNumber',
                       buttonText: 'VERIFY',
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
