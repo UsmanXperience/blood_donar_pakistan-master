@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.only(
-          top: screenHeight * 0.02,
+          top: screenHeight * 0.05,bottom: screenHeight * 0.05,
           right: screenWidth * 0.05,
           left: screenWidth * 0.05,
         ),
@@ -100,14 +100,18 @@ class LoginPage extends StatelessWidget {
                 ),
               ],
             ),
+
             Center(
-              child: Text(
-                'Forgot Password?',
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                  fontFamily: 'Lexend',
-                  fontSize: 20,
+              child: GestureDetector(
+                onTap: () {},
+                child: Text(
+                  'Forgot Password?',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                    fontFamily: 'Lexend',
+                    fontSize: 20,
+                  ),
                 ),
               ),
             ),
@@ -117,7 +121,10 @@ class LoginPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth*0.38, vertical: screenHeight*0.02),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.38,
+                    vertical: screenHeight * 0.02,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
@@ -133,9 +140,119 @@ class LoginPage extends StatelessWidget {
                 'Or',
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
-                  color: Colors.black,
+                  color: Colors.grey,
                   fontFamily: 'Lexend',
                   fontSize: 20,
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Google Sign-In Button
+                SizedBox(
+                  width: screenWidth * 0.7,
+                  height: screenHeight * 0.08,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      print('Google Sign In pressed');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      elevation: 2,
+                      side: BorderSide(color: Colors.blue),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      padding: EdgeInsets.zero,
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: screenWidth * 0.14,
+                          height: screenHeight * 0.14,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                          ),
+                          padding: EdgeInsets.all(screenWidth * 0.010),
+                          child: Image.asset(
+                            'assets/google.png',
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                              'Sign in with Google',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontFamily: 'Lexend',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(width: screenWidth * 0.03),
+                // Facebook Round Button
+                GestureDetector(
+                  onTap: () {
+                    print('Facebook button pressed');
+                  },
+                  child: Container(
+                    width: screenWidth * 0.16,
+                    height: screenWidth * 0.16,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Container(
+                        width: screenWidth * 0.13,
+                        height: screenHeight * 0.13,
+                        decoration: BoxDecoration(
+                          color: Colors.blue[500],
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Text(
+                            'f',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Lexend',
+                              fontSize: 40,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Center(
+              child: GestureDetector(
+                onTap: () {},
+                child: Text(
+                  'Create an account?',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                    fontFamily: 'Lexend',
+                    fontSize: 20,
+                  ),
                 ),
               ),
             ),
