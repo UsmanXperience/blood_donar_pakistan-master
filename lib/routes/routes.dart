@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../view/creat_account.dart';
 import '../view/login.dart';
 import '../view model/splash_screen.dart';
 import '../view/login_page.dart';
@@ -11,6 +12,6 @@ class AppRoutes {
     Login.id: (context) => Login(),
     OtpScreen.id: (context) =>OtpScreen(),
     LoginPage.id: (context)=>LoginPage(),
-
+    CreatAccount.id: (context)=> CreatAccount(),
   };
 }

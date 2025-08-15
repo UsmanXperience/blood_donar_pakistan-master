@@ -90,7 +90,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 ClipPath(
                   clipper: HeaderClipper(),
                   child: TopDesing(
-                    firsText: 'Blood Donar',
+                    firstText: 'Blood Donar',
                     secondText: 'P A K I S T A N',
                     imagePath: 'assets/logo.png',
                   ),
