@@ -1,22 +1,24 @@
 import 'package:blood_donar_pakistan/extension/extension.dart';
 import 'package:flutter/material.dart';
 
-class TopDesing extends StatelessWidget {
-  final Color? backgroundColor;
+class TopDesign extends StatelessWidget {
+  final Color backgroundColor;
   final String? firstText;
   final String? secondText;
   final String? thirdText;
   final String? fourText;
+  final String? fiveText;
   final String? imagePath;
   final bool isLeftAligned;
 
-  const TopDesing({
+  const TopDesign({
     super.key,
-    this.backgroundColor,
+    this.backgroundColor = Colors.red,
     this.firstText,
     this.secondText,
     this.thirdText,
     this.fourText,
+    this.fiveText,
     this.imagePath,
     this.isLeftAligned = false,
   });
@@ -30,88 +32,97 @@ class TopDesing extends StatelessWidget {
       height: screenHeight * 0.35,
       width: screenWidth,
       decoration: BoxDecoration(
+        color: backgroundColor,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
             blurRadius: 6,
             spreadRadius: 2,
-            offset: Offset(0, 3),
+            offset:  Offset(0, 3),
           ),
         ],
-        color: backgroundColor ?? Colors.red, // Default color
       ),
       child: Padding(
         padding: EdgeInsets.only(top: screenHeight * 0.06),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: isLeftAligned
-              ? CrossAxisAlignment.start
-              : CrossAxisAlignment.center,
+          crossAxisAlignment:
+          isLeftAligned ? CrossAxisAlignment.start : CrossAxisAlignment.center,
           children: [
-            if (imagePath != null) // Show image only if provided
+            if (imagePath != null)
               Image.asset(
                 imagePath!,
                 height: screenHeight * 0.12,
                 width: screenWidth * 0.2,
                 fit: BoxFit.contain,
               ),
-            if (firstText != null) // Show text only if provided
+            if (firstText != null)
               Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: isLeftAligned ? 30.0 : 0,
-                ),
+                    horizontal: isLeftAligned ? 30.0 : 0),
                 child: Text(
                   firstText!,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 20,
+                    fontSize: screenWidth * 0.05,
                     color: Colors.white,
                     fontFamily: 'Lexend',
                   ),
                 ),
               ),
-            if (secondText != null) // Show text only if provided
+            if (secondText != null)
               Text(
                 secondText!,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.w400,
-                  fontSize: 20,
+                  fontSize: screenWidth * 0.05,
                   color: Colors.white,
                   fontFamily: 'Lexend',
                 ),
               ),
-            SizedBox(height: screenHeight * 0.01),
-            if (thirdText != null) // Show text only if provided
+            if (thirdText != null)
               Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: isLeftAligned ? 30.0 : 0,
-                ),
+                    horizontal: isLeftAligned ? 30.0 : 0),
                 child: Text(
                   thirdText!,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w400,
-                    fontSize: 35,
+                    fontSize: screenWidth * 0.08,
                     color: Colors.white,
                     fontFamily: 'Lexend',
+
                   ),
                 ),
               ),
-            SizedBox(height: screenHeight * 0.01),
-            if (fourText != null) // Show text only if provided
+            if (fourText != null)
               Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: isLeftAligned ? 30.0 : 0,
-                ),
+                    horizontal: isLeftAligned ? 30.0 : 0),
                 child: Text(
                   fourText!,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w400,
-                    fontSize: 20,
+                    fontSize: screenWidth * 0.05,
                     color: Colors.white,
                     fontFamily: 'Lexend',
                   ),
                 ),
               ),
+            if (fiveText != null)
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: isLeftAligned ? 30.0 : 0),
+                child: Text(
+                  fiveText!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: screenWidth * 0.10,
+                    color: Colors.white,
+                    fontFamily: 'Lexend',
+                  ),
+                ),
+              )
           ],
         ),
       ),

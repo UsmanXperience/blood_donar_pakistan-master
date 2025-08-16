@@ -50,11 +50,12 @@ class _LoginState extends State<Login> {
                 children: [
                   ClipPath(
                     clipper: HeaderClipper(),
-                    child: TopDesing(
+                    child: TopDesign(
+                      firstText: "Blood Donar",
+                      secondText: " P a k i s t a n",
+                      imagePath: "assets/logo.png",
                       backgroundColor: Colors.red,
-                      firstText: 'Blood Donar',
-                      secondText: 'P A K I S T A N',
-                      imagePath: 'assets/logo.png',
+                      isLeftAligned: false,
                     ),
                   ),
                   PhoneNumberCard(
@@ -62,20 +63,23 @@ class _LoginState extends State<Login> {
                     screenWidth: screenWidth,
 
                     //next button
-
                     onNext: () {
                       String phoneNumber = phoneController.text.trim();
-                      if (isValidPhoneNumber(phoneNumber)){
-                        Navigator.pushNamed(context, OtpScreen.id,
+                      if (isValidPhoneNumber(phoneNumber)) {
+                        Navigator.pushNamed(
+                          context,
+                          OtpScreen.id,
                           arguments: phoneController.text,
                         );
-                      }
-                       else {
+                      } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Please enter a valid 11-digit phone number',),
-                          backgroundColor: Colors.red,
+                          SnackBar(
+                            content: Text(
+                              'Please enter a valid 11-digit phone number',
+                            ),
+                            backgroundColor: Colors.red,
                             duration: Duration(seconds: 3),
-                          )
+                          ),
                         );
                       }
                     },
@@ -87,7 +91,7 @@ class _LoginState extends State<Login> {
                       controller: phoneController,
                       keyboardType: TextInputType.phone,
                       maxLength: 11,
-                      decoration:  InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'PHONE NUMBER',
                         labelStyle: TextStyle(
                           color: Colors.black,
@@ -115,11 +119,11 @@ class _LoginState extends State<Login> {
                   ),
                 ],
               ),
-              SizedBox(height: screenHeight*0.2,),
+              SizedBox(height: screenHeight * 0.2),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   Text(
+                  Text(
                     "Didn't get OTP? ",
                     style: TextStyle(
                       color: Colors.grey,
@@ -130,28 +134,28 @@ class _LoginState extends State<Login> {
                   ),
                   GestureDetector(
                     onTap: () {
-                     String phoneNumber =phoneController.text.trim();
-                     if
-                       (isValidPhoneNumber(phoneNumber)){
-                       ScaffoldMessenger.of(context).showSnackBar(
-                         SnackBar(content: Text('OTP resent successfully'),
+                      String phoneNumber = phoneController.text.trim();
+                      if (isValidPhoneNumber(phoneNumber)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('OTP resent successfully'),
 
-                           duration: Duration(seconds: 3),
-                         ),
-
-                       );
-
-                     } else{
-                       ScaffoldMessenger.of(context).showSnackBar(
-                         SnackBar(content: Text('Please enter a valid phone number to resend OTP'),
-                         backgroundColor: Colors.red,
-                           duration: Duration(seconds: 3),
-                         )
-                       );
-                     }
-
+                            duration: Duration(seconds: 3),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Please enter a valid phone number to resend OTP',
+                            ),
+                            backgroundColor: Colors.red,
+                            duration: Duration(seconds: 3),
+                          ),
+                        );
+                      }
                     },
-                    child:  Text(
+                    child: Text(
                       'Resend',
                       style: TextStyle(
                         color: Colors.black,

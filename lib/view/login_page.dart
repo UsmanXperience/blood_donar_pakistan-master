@@ -3,6 +3,7 @@ import 'package:blood_donar_pakistan/extension/extension.dart';
 import 'package:flutter/material.dart';
 
 import '../custom_logo/hint_text_custom.dart';
+import 'blood_grp_detail.dart';
 import 'creat_account.dart';
 
 class LoginPage extends StatelessWidget {
@@ -59,7 +60,7 @@ class LoginPage extends StatelessWidget {
               textColor: Colors.white,
               backgroundcolor: Colors.red,
               onPressed: () {
-
+                Navigator.pushNamed(context, BloodGrpDetail.id);
               },
               horizontalPadding: screenWidth * 0.38,
               verticalPadding: screenHeight * 0.015,

@@ -1,4 +1,4 @@
-import 'package:blood_donar_pakistan/extension/extension.dart';
+
 import 'package:flutter/material.dart';
 
 class Elevated_Button extends StatelessWidget {
@@ -22,8 +22,7 @@ class Elevated_Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = context.screenWidth;
-    final screenHeight = context.screenHeight;
+
     return Center(
       child: ElevatedButton(
         onPressed: onPressed,

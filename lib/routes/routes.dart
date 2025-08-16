@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../view/blood_grp_detail.dart';
 import '../view/creat_account.dart';
 import '../view/login.dart';
 import '../view model/splash_screen.dart';
@@ -13,5 +14,6 @@ class AppRoutes {
     OtpScreen.id: (context) =>OtpScreen(),
     LoginPage.id: (context)=>LoginPage(),
     CreatAccount.id: (context)=> CreatAccount(),
+    BloodGrpDetail.id:(context)=> BloodGrpDetail(),
   };
 }

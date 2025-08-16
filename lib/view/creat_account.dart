@@ -35,16 +35,20 @@ class CreatAccount extends StatelessWidget {
             children: [
               ClipPath(
                 clipper: HeaderClipper(),
-                child: TopDesing(
-                  backgroundColor: Colors.red,
-                  firstText: 'Signup for a new account',
-                  thirdText: 'Create Account',
-                  fourText: 'Enter your account details',
+                child: TopDesign(
+                  firstText: "Signup for a new account",
+                  thirdText: 'Creat account',
+                  fourText: 'Enter your account detail',
                   isLeftAligned: true,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 5.0,left: 16.0,right: 16.0,bottom: 5.0),
+                padding: const EdgeInsets.only(
+                  top: 5.0,
+                  left: 16.0,
+                  right: 16.0,
+                  bottom: 5.0,
+                ),
                 child: Column(
                   children: List.generate(fields.length, (index) {
                     return Padding(
@@ -69,9 +73,10 @@ class CreatAccount extends StatelessWidget {
                 horizontalPadding: screenWidth * 0.38,
                 verticalPadding: screenHeight * 0.015,
               ),
-              SizedBox(height: screenHeight*0.015,),
+              SizedBox(height: screenHeight * 0.015),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.center,mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Already have an account?',
@@ -82,9 +87,10 @@ class CreatAccount extends StatelessWidget {
                       fontSize: 20,
                     ),
                   ),
-                  GestureDetector(onTap: () {
-                    Navigator.pushNamed(context, LoginPage.id);
-                  },
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, LoginPage.id);
+                    },
                     child: Text(
                       'Login',
                       style: TextStyle(
